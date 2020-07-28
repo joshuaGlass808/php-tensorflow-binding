@@ -1,0 +1,17 @@
+test.php
+test.c
+testout
+modules/
+build/
+autom4te.cache/
+.libs/
+config.log
+config.nice
+config.status
+config.h*
+configure*
+libtool
+Makefile*
+run-tests.php 
+*.la
+*.lo

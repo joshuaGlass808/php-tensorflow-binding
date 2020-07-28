@@ -1,0 +1,65 @@
+/* This is a generated file, edit the .stub.php file instead.
+ * Stub hash: 84e874a9ae88bf9b6bc246e31f26351ea5040557 */
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_class_TFGraph___construct, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_TFGraph___destruct arginfo_class_TFGraph___construct
+
+#define arginfo_class_TFSessionOptions___construct arginfo_class_TFGraph___construct
+
+#define arginfo_class_TFSessionOptions___destruct arginfo_class_TFGraph___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_TFSessionOptions_setTarget, 0, 1, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, target, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_class_TFBuffer___construct, 0, 0, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_STRING, 1, "null")
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_TFBuffer___destruct arginfo_class_TFGraph___construct
+
+#define arginfo_class_TFStatus___construct arginfo_class_TFGraph___construct
+
+#define arginfo_class_TFStatus___destruct arginfo_class_TFGraph___construct
+
+
+ZEND_METHOD(TFGraph, __construct);
+ZEND_METHOD(TFGraph, __destruct);
+ZEND_METHOD(TFSessionOptions, __construct);
+ZEND_METHOD(TFSessionOptions, __destruct);
+ZEND_METHOD(TFSessionOptions, setTarget);
+ZEND_METHOD(TFBuffer, __construct);
+ZEND_METHOD(TFBuffer, __destruct);
+ZEND_METHOD(TFStatus, __construct);
+ZEND_METHOD(TFStatus, __destruct);
+
+
+static const zend_function_entry class_TFGraph_methods[] = {
+	ZEND_ME(TFGraph, __construct, arginfo_class_TFGraph___construct, ZEND_ACC_PUBLIC)
+	ZEND_ME(TFGraph, __destruct, arginfo_class_TFGraph___destruct, ZEND_ACC_PUBLIC)
+	ZEND_FE_END
+};
+
+
+static const zend_function_entry class_TFSessionOptions_methods[] = {
+	ZEND_ME(TFSessionOptions, __construct, arginfo_class_TFSessionOptions___construct, ZEND_ACC_PUBLIC)
+	ZEND_ME(TFSessionOptions, __destruct, arginfo_class_TFSessionOptions___destruct, ZEND_ACC_PUBLIC)
+	ZEND_ME(TFSessionOptions, setTarget, arginfo_class_TFSessionOptions_setTarget, ZEND_ACC_PUBLIC)
+	ZEND_FE_END
+};
+
+
+static const zend_function_entry class_TFBuffer_methods[] = {
+	ZEND_ME(TFBuffer, __construct, arginfo_class_TFBuffer___construct, ZEND_ACC_PUBLIC)
+	ZEND_ME(TFBuffer, __destruct, arginfo_class_TFBuffer___destruct, ZEND_ACC_PUBLIC)
+	ZEND_FE_END
+};
+
+
+static const zend_function_entry class_TFStatus_methods[] = {
+	ZEND_ME(TFStatus, __construct, arginfo_class_TFStatus___construct, ZEND_ACC_PUBLIC)
+	ZEND_ME(TFStatus, __destruct, arginfo_class_TFStatus___destruct, ZEND_ACC_PUBLIC)
+	ZEND_FE_END
+};

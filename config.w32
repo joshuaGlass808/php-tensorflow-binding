@@ -1,0 +1,7 @@
+ARG_ENABLE('tensorflow_binding', 'tensorflow_binding support', 'no');
+
+if (PHP_TENSORFLOW_BINDING != 'no') {
+	AC_DEFINE('HAVE_TENSORFLOW_BINDING', 1, 'tensorflow_binding support enabled');
+
+	EXTENSION('tensorflow_binding', 'tensorflow_binding.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+}
