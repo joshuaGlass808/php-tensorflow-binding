@@ -21,4 +21,5 @@ class TFBuffer {
 class TFStatus {
     public function __construct() {}
     public function __destruct() {}
+    public function setStatusCode(int $errorCode, string $context): void {}
 }

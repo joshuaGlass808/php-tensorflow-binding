@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 84e874a9ae88bf9b6bc246e31f26351ea5040557 */
+ * Stub hash: bf201b772d1359252f418c5ffa098b75d06aa17b */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_TFGraph___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -24,6 +24,11 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_TFStatus___destruct arginfo_class_TFGraph___construct
 
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_TFStatus_setStatusCode, 0, 2, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, errorCode, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, context, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
 
 ZEND_METHOD(TFGraph, __construct);
 ZEND_METHOD(TFGraph, __destruct);
@@ -34,6 +39,7 @@ ZEND_METHOD(TFBuffer, __construct);
 ZEND_METHOD(TFBuffer, __destruct);
 ZEND_METHOD(TFStatus, __construct);
 ZEND_METHOD(TFStatus, __destruct);
+ZEND_METHOD(TFStatus, setStatusCode);
 
 
 static const zend_function_entry class_TFGraph_methods[] = {
@@ -61,5 +67,6 @@ static const zend_function_entry class_TFBuffer_methods[] = {
 static const zend_function_entry class_TFStatus_methods[] = {
 	ZEND_ME(TFStatus, __construct, arginfo_class_TFStatus___construct, ZEND_ACC_PUBLIC)
 	ZEND_ME(TFStatus, __destruct, arginfo_class_TFStatus___destruct, ZEND_ACC_PUBLIC)
+	ZEND_ME(TFStatus, setStatusCode, arginfo_class_TFStatus_setStatusCode, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
