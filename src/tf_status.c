@@ -39,6 +39,24 @@ void tf_status_destruct(zval* s)
     TF_DeleteStatus(status->tf_status);
 }
 
+void tf_set_status(zval* s, int errorCode, const char* context)
+{
+    tf_status_t* status = STATUS_FETCH(s);
+    TF_SetStatus(status->tf_status, TF_OK, "");
+}
+
+PHP_METHOD(TFStatus, setStatusCode)
+{
+    char* context = NULL;
+    size_t len;
+    int errorCode;
+    if (zend_parse_parameters(ZEND_NUM_ARGS(), "ls", &errorCode, &context, &len) == FAILURE) {
+        return;
+    }
+
+    tf_set_status(getThis(), errorCode, (const char*) context);
+}
+
 PHP_METHOD(TFStatus, __construct)
 {
     ZEND_PARSE_PARAMETERS_NONE();

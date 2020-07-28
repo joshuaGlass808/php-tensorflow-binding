@@ -62,7 +62,8 @@ PHP_METHOD(TFSessionOptions, __destruct)
 PHP_METHOD(TFSessionOptions, setTarget)
 {
     char* target;
-    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &target) == FAILURE) {
+    size_t targetSize;
+    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &target, &targetSize) == FAILURE) {
         return;
     }
 
