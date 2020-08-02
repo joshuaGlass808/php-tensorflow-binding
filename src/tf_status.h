@@ -19,10 +19,14 @@ zend_object* tf_status_create(zend_class_entry*);
 void tf_status_construct(zval*);
 void tf_status_destruct(zval*);
 void tf_set_status(zval*, int, const char*);
+TF_Code tf_get_code(zval*);
+char* tf_get_status_message(zval*);
 
 PHP_MINIT_FUNCTION(TF_STATUS);
 PHP_METHOD(TFStatus, __construct);
 PHP_METHOD(TFStatus, __destruct);
 PHP_METHOD(TFStatus, setStatusCode);
+PHP_METHOD(TFStatus, getStatusCode);
+PHP_METHOD(TFStatus, getStatusMessage);
 
 #endif

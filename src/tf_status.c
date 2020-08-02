@@ -42,7 +42,55 @@ void tf_status_destruct(zval* s)
 void tf_set_status(zval* s, int errorCode, const char* context)
 {
     tf_status_t* status = STATUS_FETCH(s);
-    TF_SetStatus(status->tf_status, TF_OK, "");
+    TF_Code code;
+    switch (errorCode) {
+        case 0:  code = TF_OK; break;
+        case 1:  code = TF_CANCELLED; break;
+        case 2:  code = TF_UNKNOWN; break;
+        case 3:  code = TF_INVALID_ARGUMENT; break;
+        case 4:  code = TF_DEADLINE_EXCEEDED; break;
+        case 5:  code = TF_NOT_FOUND; break;
+        case 6:  code = TF_ALREADY_EXISTS; break;
+        case 7:  code = TF_PERMISSION_DENIED; break;
+        case 8:  code = TF_RESOURCE_EXHAUSTED; break;
+        case 9:  code = TF_FAILED_PRECONDITION; break;
+        case 10: code = TF_ABORTED; break;
+        case 11: code = TF_OUT_OF_RANGE; break;
+        case 12: code = TF_UNIMPLEMENTED; break;
+        case 13: code = TF_INTERNAL; break;
+        case 14: code = TF_UNAVAILABLE; break;
+        case 15: code = TF_DATA_LOSS; break;
+        case 16: code = TF_UNAUTHENTICATED; break;
+    }
+    TF_SetStatus(status->tf_status, code, context);
+}
+
+TF_Code tf_get_code(zval* s) 
+{
+    tf_status_t* status = STATUS_FETCH(s);
+
+    return TF_GetCode(status->tf_status);
+}
+
+char* tf_get_status_message(zval* s) 
+{
+    tf_status_t* status = STATUS_FETCH(s);
+
+    return (char*) TF_Message(status->tf_status);
+}
+
+PHP_METHOD(TFStatus, getStatusMessage)
+{
+    ZEND_PARSE_PARAMETERS_NONE();
+
+    RETURN_STRING(tf_get_status_message(getThis()));
+}
+
+PHP_METHOD(TFStatus, getStatusCode)
+{
+    ZEND_PARSE_PARAMETERS_NONE();
+
+    RETURN_LONG((int) tf_get_code(getThis()));
 }
 
 PHP_METHOD(TFStatus, setStatusCode)
