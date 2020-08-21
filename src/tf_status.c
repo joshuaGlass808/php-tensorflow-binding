@@ -68,7 +68,6 @@ void tf_set_status(zval* s, int errorCode, const char* context)
 TF_Code tf_get_code(zval* s) 
 {
     tf_status_t* status = STATUS_FETCH(s);
-
     return TF_GetCode(status->tf_status);
 }
 
