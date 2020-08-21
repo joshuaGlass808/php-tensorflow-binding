@@ -3,6 +3,8 @@
 
 #include "php.h"
 #include "tf_graph.h"
+#include "tf_status.h"
+#include "tf_output.h"
 #include "tf_arginfo.h"
 
 static void tf_graph_free_storage(zend_object *object)
@@ -35,6 +37,31 @@ void tf_graph_construct(zval* g) {
 void tf_graph_destruct(zval* g) {
     php_tf_graph_t *graph = GRAPH_FETCH(g);
     TF_DeleteGraph(graph->tf_graph);
+}
+
+PHP_METHOD(TFGraph, setTensorShape)
+{
+    zval* output = NULL;
+    zval* status = NULL;
+    php_tf_graph_t *graph = GRAPH_FETCH(getThis());
+
+    long dims, 
+         numDims;
+
+    ZEND_PARSE_PARAMETERS_START(4,4)
+        Z_PARAM_OBJECT_OF_CLASS(output, tf_output_ce)
+        Z_PARAM_LONG(dims)
+        Z_PARAM_LONG(numDims)
+        Z_PARAM_OBJECT_OF_CLASS(status, tf_status_ce)
+    ZEND_PARSE_PARAMETERS_END();
+
+    TF_GraphSetTensorShape(
+        graph->tf_graph,
+        (OUTPUT_FETCH(output))->tf_output, 
+        (int64_t*) dims, 
+        (int) numDims, 
+        (STATUS_FETCH(status))->tf_status
+    );
 }
 
 PHP_METHOD(TFGraph, __construct)

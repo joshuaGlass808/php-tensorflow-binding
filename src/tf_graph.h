@@ -23,5 +23,6 @@ void tf_graph_destruct(zval*);
 PHP_MINIT_FUNCTION(TF_GRAPH);
 PHP_METHOD(TFGraph, __construct);
 PHP_METHOD(TFGraph, __destruct);
+PHP_METHOD(TFGraph, setTensorShape);
 
 #endif

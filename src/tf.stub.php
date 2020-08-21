@@ -3,23 +3,19 @@
 /** @generate-function-entries */
 
 class TFOperation {
-    public function __construct() {}
-    public function __destruct() {}
+    public function __construct(TFOperationDescription $desc, TFStatus $status) {}
 }
 
 class TFOperationDescription {
-    public function __construct() {}
-    public function __destruct() {}
+    public function __construct(TFGraph $graph, string $operationType, string $operatinName) {}
 }
 
 class TFInput {
-    public function __construct() {}
-    public function __destruct() {}
+    public function __construct(TFOperation $operation) {}
 }
 
 class TFOutput {
-    public function __construct() {}
-    public function __destruct() {}
+    public function __construct(TFInput $input) {}
 }
 
 class TFFuntion {
@@ -27,7 +23,7 @@ class TFFuntion {
     public function __destruct() {}
 }
 
-class TFFunctionOperations {
+class TFFunctionOptions {
     public function __construct() {}
     public function __destruct() {}
 }
