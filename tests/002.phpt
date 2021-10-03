@@ -1,5 +1,5 @@
 --TEST--
-Create various classes.
+Creation of various classes.
 --SKIPIF--
 <?php
 if (!extension_loaded('tensorflow_binding')) {
@@ -8,12 +8,12 @@ if (!extension_loaded('tensorflow_binding')) {
 ?>
 --FILE--
 <?php
-$test1 = new TFGraph();
-$test2 = new TFSessionOptions();
-$test3 = new TFBuffer();
-$test4 = new TFBuffer('Test');
+$graph = new TFGraph();
+$sessionOptions = new TFSessionOptions();
+$buffer = new TFBuffer();
+$bufferInit = new TFBuffer('Test');
 
-var_dump($test1, $test2, $test3, $test4);
+var_dump($graph, $sessionOptions, $buffer, $bufferInit);
 ?>
 --EXPECT--
 object(TFGraph)#1 (0) {
