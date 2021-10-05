@@ -45,5 +45,5 @@ if test "$PHP_TENSORFLOW_BINDING" != "no"; then
   PHP_SUBST(TENSORFLOW_BINDING_SHARED_LIBADD)
 
   AC_DEFINE(HAVE_TENSORFLOW_BINDING, 1, [ Have tensorflow_binding support ])
-  PHP_NEW_EXTENSION(tensorflow_binding, tensorflow_binding.c src/tf_graph.c src/tf_session_options.c src/tf_buffer.c src/tf_status.c, $ext_shared)
+  PHP_NEW_EXTENSION(tensorflow_binding, tensorflow_binding.c src/tf_graph.c src/tf_session_options.c src/tf_buffer.c src/tf_status.c src/tf_operation.c src/tf_operation_description.c src/tf_input.c, $ext_shared)
 fi

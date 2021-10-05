@@ -8,6 +8,10 @@
 
 #include "php.h"
 #include "tf_operation.h"
+#include "tf_operations_description.h"
+#include "tf_graph.h"
+#include "tf_input.h"
+#include "tf_status.h"
 #include "tf_arginfo.h"
 
 void tf_operation_free_storage(zend_object* object)
@@ -34,15 +38,55 @@ zend_object* tf_operation_create(zend_class_entry* ce)
 
 PHP_METHOD(TFOperation, __construct)
 {
-    tf_operation_t* operation = OPERATION_FETCH(getThis());
+    ZEND_PARSE_PARAMETERS_NONE();
+    tf_graph_construct(getThis());
+}
+
+PHP_METHOD(TFOperation, finishOperation)
+{
+    tf_operation_desc_t* operation = OPERATION_FETCH(getThis());
     zval* operDesc = NULL;
     zval* status = NULL;
 
-    ZEND_PARSE_PARAMETERS_START(1, 1)
-        Z_PARAM_OBJECT_OF_CLASS(operDesc, tf_input_ce);
+    tf_operation_desc_t* tfOd;
+
+    ZEND_PARSE_PARAMETERS_START(2, 2)
+        Z_PARAM_OBJECT_OF_CLASS(operDesc, tf_input_ce)
+        Z_PARAM_OBJECT_OF_CLASS(status, tf_status_ce)
     ZEND_PARSE_PARAMETERS_END();
 
-    operation->tf_operation = TF_FinishOperation(operDesc->tf_operation_description, status->tf_status);
+    tfOd = OPER_DESC_FETCH(operDesc);
+
+    operation->tf_operation = TF_FinishOperation(tfOd->tf_oper_desc, status);
+}
+
+PHP_METHOD(TFOperation, graphOperationByName)
+{
+    tf_operation_t* operation = OPERATION_FETCH(getThis());
+    zval* graph = NULL;
+    char* oper_name;
+    size_t str_s;
+
+    ZEND_PARSE_PARAMETERS_START(2, 2)
+        Z_PARAM_OBJECT_OF_CLASS(graph, tf_graph_ce)
+        Z_PARAM_STRING(oper_name, str_s)
+    ZEND_PARSE_PARAMETERS_END();
+
+    operation->tf_operation = TF_GraphOperationByName((TF_Graph*)graph, (const char*)oper_name);
+}
+
+PHP_METHOD(TFOperation, graphNextOperation)
+{
+    tf_operation_t* operation = OPERATION_FETCH(getThis());
+    zval* graph = NULL;
+    long pos;
+
+    ZEND_PARSE_PARAMETERS_START(2, 2)
+        Z_PARAM_OBJECT_OF_CLASS(graph, tf_graph_ce)
+        Z_PARAM_LONG(pos)
+    ZEND_PARSE_PARAMETERS_END();
+
+    operation->tf_operation = TF_GraphNextOperation((TF_Graph*)graph, (size_t*)pos);
 }
 
 PHP_MINIT_FUNCTION(TF_OPERATION)

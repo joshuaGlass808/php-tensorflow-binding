@@ -20,5 +20,8 @@ void tf_operation_free_storage(zend_object*);
 
 PHP_MINIT_FUNCTION(TF_OPERATION);
 PHP_METHOD(TFOperation, __construct);
+PHP_METHOD(TFOperation, finishOperation);
+PHP_METHOD(TFOperation, graphOperationByName);
+PHP_METHOD(TFOperation, graphNextOperation);
 
 #endif

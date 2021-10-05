@@ -2,7 +2,7 @@
 #define HAVE_TF_OP_DESC
 
 #include "php.h"
-#include "tf_operation_description.h"
+#include "tf_operations_description.h"
 #include "tf_arginfo.h"
 #include "tf_status.h"
 #include "tf_graph.h"
@@ -36,7 +36,7 @@ zend_object* tf_operation_desc_create(zend_class_entry* ce)
 {
     tf_operation_desc_t* oper_desc = (tf_operation_desc_t*) ecalloc(
         1,
-        sizeof(tf_operation_desc) + zend_object_properties_size(ce)
+        sizeof(tf_operation_desc_t*) + zend_object_properties_size(ce)
     );
 
     zend_object_std_init(&oper_desc->std, ce);
@@ -49,7 +49,7 @@ zend_object* tf_operation_desc_create(zend_class_entry* ce)
 
 PHP_METHOD(TFOperationDescription, __construct)
 {
-    tf_operations_desc_t* oper_desc = OPER_DESC_FETCH(getThis());
+    tf_operation_desc_t* oper_desc = OPER_DESC_FETCH(getThis());
     zval* tfGraph = NULL;
     zend_string *operType, *operName;
     size_t typeSize, nameSize;
@@ -60,8 +60,11 @@ PHP_METHOD(TFOperationDescription, __construct)
         Z_PARAM_STRING(operName, nameSize)
     ZEND_PARSE_PARAMETERS_END();
 
+    php_tf_graph_t* tfRGraph;
+    tfRgraph = GRAPH_FETCH(tfGraph);
+
     oper_desc->tf_oper_desc = TF_NewOperation(
-        tfGraph->tf_graph,
+        tfRGraph->tf_graph,
         (char*) operType,
         (char*) operName
     );

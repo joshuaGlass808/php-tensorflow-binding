@@ -3,7 +3,10 @@
 /** @generate-function-entries */
 
 class TFOperation {
-    public function __construct(TFOperationDescription $desc, TFStatus $status) {}
+    public function __construct() {}
+    public function graphNextOperation(TFGraph $graph, int $pos): void {}
+    public function graphOperationByName(TFGraph $graph, string $operationName): void {}
+    public function finishOperation(TFOperationDescription $desc, TFStatus $status): void {}
 }
 
 class TFOperationDescription {
