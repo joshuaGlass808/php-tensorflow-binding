@@ -4,6 +4,7 @@
 #include "php.h"
 #include "tf_input.h"
 #include "tf_arginfo.h"
+#include "tf_operation.h"
 
 void tf_input_free_storage(zend_object* object)
 {
@@ -35,7 +36,10 @@ PHP_METHOD(TFInput, __construct)
         Z_PARAM_OBJECT_OF_CLASS(tfOperation, tf_operation_ce);
     ZEND_PARSE_PARAMETERS_END();
 
-    input->tf_input.oper = tfOperation->tf_operation;
+    tf_operation_t* operation;
+    operation = OPERATION_FETCH(tfOperation);
+
+    input->tf_input.oper = operation->tf_operation;
 }
 
 PHP_MINIT_FUNCTION(TF_INPUT)

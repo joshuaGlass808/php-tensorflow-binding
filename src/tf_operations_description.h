@@ -4,8 +4,8 @@
 #include "php.h"
 #include <tensorflow/c/c_api.h>
 
-#define OPERATION_FETCH_FROM(o)	((tf_operation_desc_t*) (((char*)o) - XtOffsetOf(tf_operation_desc_t, std)))
-#define OPER_DESC_FETCH(z)		OPERATION_FETCH_FROM(Z_OBJ_P(z)) /* }}} */
+#define OPERATION_DESC_FETCH_FROM(o)	((tf_operation_desc_t*) (((char*)o) - XtOffsetOf(tf_operation_desc_t, std)))
+#define OPER_DESC_FETCH(z)		OPERATION_DESC_FETCH_FROM(Z_OBJ_P(z)) /* }}} */
 
 typedef struct _tf_operation_desc_t {
     TF_OperationDescription* tf_oper_desc;

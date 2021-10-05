@@ -15,6 +15,9 @@
 #include "src/tf_session_options.h"
 #include "src/tf_buffer.h"
 #include "src/tf_status.h"
+#include "src/tf_input.h"
+#include "src/tf_operation.h"
+#include "src/tf_operations_description.h"
 
 
 /* For compatibility with older PHP versions */
@@ -41,6 +44,9 @@ PHP_MINIT_FUNCTION(tensorflow_binding)
 	PHP_MINIT(TF_SESSION)(INIT_FUNC_ARGS_PASSTHRU);
 	PHP_MINIT(TF_BUFFER)(INIT_FUNC_ARGS_PASSTHRU);
     PHP_MINIT(TF_STATUS)(INIT_FUNC_ARGS_PASSTHRU);
+	PHP_MINIT(TF_INPUT)(INIT_FUNC_ARGS_PASSTHRU);
+	PHP_MINIT(TF_OPERATION)(INIT_FUNC_ARGS_PASSTHRU);
+	PHP_MINIT(TF_OPERATION_DESCRIPTION)(INIT_FUNC_ARGS_PASSTHRU);
 
     return SUCCESS;
 }
