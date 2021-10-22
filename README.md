@@ -6,23 +6,11 @@ php tensorflow extension
 to install:
 - git clone repo.
 - `cd php-tensorflow-binding`
-- `phpize && ./configure && make -j4 && sudo make install`
+- `sudo  phpize && ./configure && make -j4 && sudo make install && make test`
 - profit
 
-Examples will come when this is complete.
-But you could also look through the tests for some current usage examples:
+Once I finish replicating as much of the c api as I can, I will work on providing documentation.
 
-
-```
-<?php
-// Constructing instances.
-$test1 = new TFGraph();
-$test2 = new TFSessionOptions();
-$test3 = new TFBuffer();
-$test4 = new TFBuffer('Test');
-$status = new TFStatus();
-$status2 = new TFStatus();
-$status->setStatusCode(2, 'Test');
-$status2->setStatusCode(0, 'Test'); // Test will not be used because 0 = TF_OK
-var_dump($status->getStatusCode(), $status->getStatusMessage(),$status2->getStatusCode(), $status2->getStatusMessage());
-```
+# CONTRIBUTION IS WELCOME
+- currently I have no guidelines on contribution.
+- if you would like to help out then do it!
