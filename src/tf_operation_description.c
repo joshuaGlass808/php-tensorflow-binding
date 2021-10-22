@@ -61,7 +61,7 @@ PHP_METHOD(TFOperationDescription, __construct)
     ZEND_PARSE_PARAMETERS_END();
 
     php_tf_graph_t* tfRGraph;
-    tfRgraph = GRAPH_FETCH(tfGraph);
+    tfRGraph = GRAPH_FETCH(tfGraph);
 
     oper_desc->tf_oper_desc = TF_NewOperation(
         tfRGraph->tf_graph,
@@ -73,7 +73,7 @@ PHP_METHOD(TFOperationDescription, __construct)
 PHP_MINIT_FUNCTION(TF_OPERATION_DESCRIPTION)
 {
     zend_class_entry oper_desc_ce;
-    INIT_CLASS_ENTRY(oper_desc_ce, "TFOperationDescription", class_TFOperationDesciption_methods);
+    INIT_CLASS_ENTRY(oper_desc_ce, "TFOperationDescription", class_TFOperationDescription_methods);
     tf_operation_desc_ce = zend_register_internal_class(&oper_desc_ce);
     tf_operation_desc_ce->create_object = tf_operation_desc_create;
 
